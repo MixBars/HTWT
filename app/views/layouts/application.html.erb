@@ -42,8 +42,10 @@
         <%= t('navbar.language') %>
         </button>
         <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="en"><%= t('navbar.enus') %></a></li>
-        <li><a class="dropdown-item" href="ru"><%= t('navbar.ruru') %></a></li>
+                       
+        <li> <%= link_to t('navbar.enus'), {locale: :en}, class: "dropdown-item" %></li>
+        <li> <%= link_to t('navbar.ruru'), {locale: :ru}, class: "dropdown-item" %></li>
+        
         </ul>
       </div>
       <br>
