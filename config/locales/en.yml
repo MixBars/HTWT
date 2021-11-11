@@ -30,4 +30,20 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  navbar:
+    home: Home
+    reviewscategories: Reviews categories
+    movies: Movies
+    series: Series
+    books: Books
+    games: Games
+    signin: Sign in
+    signout: Sign out
+    profile: Profile
+    search: Search
+    ltheme: Light theme
+    dtheme: Dark theme
+    language: Language
+    enus: English
+    ruru: Русский
+

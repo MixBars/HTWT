@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
-  root to: 'reviews#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  scope '(:locale)', locale: /en|ru/ do
+        
+    root to: 'reviews#index'
+  end
 end

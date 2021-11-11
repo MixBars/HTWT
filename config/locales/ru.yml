@@ -1,0 +1,17 @@
+ru:
+  navbar:
+    home: Главная страница
+    reviewscategories: Категории отзывов 
+    movies: Фильмы
+    series: Сериалы
+    books: Книги
+    games: Игры
+    signin: Войти
+    signout: Выйти 
+    profile: Профиль
+    search: Поиск
+    ltheme: Светлая тема
+    dtheme: Темная тема
+    language: Язык
+    enus: English
+    ruru: Русский
