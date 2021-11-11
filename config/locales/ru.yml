@@ -6,8 +6,8 @@ ru:
     series: Сериалы
     books: Книги
     games: Игры
-    signin: Войти
-    signout: Выйти 
+    logIn: Войти
+    logOut: Выйти 
     profile: Профиль
     search: Поиск
     ltheme: Светлая тема

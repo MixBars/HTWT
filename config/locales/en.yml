@@ -37,8 +37,8 @@ en:
     series: Series
     books: Books
     games: Games
-    signin: Sign in
-    signout: Sign out
+    logIn: Log in
+    logOut: Sign out
     profile: Profile
     search: Search
     ltheme: Light theme
