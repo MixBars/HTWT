@@ -15,3 +15,7 @@ ru:
     language: Язык
     enus: English
     ruru: Русский
+  homepage:
+    mostLiked: Самые популярные
+    lastAdded: Последние добавленные
+    tags: Тэги

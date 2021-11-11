@@ -46,4 +46,7 @@ en:
     language: Language
     enus: English
     ruru: Русский
-
+  homepage:
+    mostLiked: Most liked
+    lastAdded: Last added
+    tags: Tags
