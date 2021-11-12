@@ -13,10 +13,8 @@
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" ><b>How to waste time</b></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      
-    </button>
+    <label class="navbar-brand" ><b>How to waste time</b></label>
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -60,8 +58,26 @@
 
       </div>
       
-      <span class="navbar-text">
-        <%= link_to t('navbar.logIn'), new_user_session_path, {class: "nav-link active", 'aria-current':"page"} %>
+      
+        
+          <% if user_signed_in? %>
+      
+      
+          <%= link_to t('navbar.myProfile'), user_session_path, {class: "nav-link active", 'aria-current':"page"} %>
+          <%= link_to t('navbar.logOut'), destroy_user_session_path, {:method => :delete, class: "nav-link active", 'aria-current':"page"} %>
+          
+      
+          
+          <% else %>
+        
+          <%= link_to t('navbar.logIn'), new_user_session_path, {class: "nav-link active", 'aria-current':"page"} %>
+          <%= t('navbar.or') %>
+          <%= link_to t('navbar.signUp'), new_user_registration_path, {class: "nav-link active", 'aria-current':"page"} %>
+        
+          <% end %>
+              
+      
+        
         
         
       </span>
@@ -73,7 +89,18 @@
     </div>
   </div>
 </nav>
+<div class='container'>
 
+<% if alert %>
+<br>
+<p class="alert alert-danger" role="alert"><%= alert %></p>
+<% end %>
+<% if notice %>
+<br>
+<p class="alert alert-primary" role="alert"><%= notice %></p>
+<% end %>
+<br>
     <%= yield %>
+    </div>
   </body>
 </html>
