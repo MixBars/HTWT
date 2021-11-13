@@ -21,6 +21,8 @@ ru:
     mostLiked: Самые популярные
     lastAdded: Последние добавленные
     tags: Тэги
+    reviewOn: Обзор на
+    readMore: Читать далее...
   
   devise:
     confirmations:

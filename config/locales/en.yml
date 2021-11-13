@@ -52,6 +52,8 @@ en:
     mostLiked: Most liked
     lastAdded: Last added
     tags: Tags
+    reviewOn: Review on
+    readMore: Read more...
 
   devise:
     confirmations:
