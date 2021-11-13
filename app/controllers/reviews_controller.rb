@@ -7,6 +7,11 @@ class ReviewsController < ApplicationController
     @reviewsLast = Review.last(3).reverse
   end
 
+  def myReviews
+    @reviews = Review.where(created_by: current_user.email[0..current_user.email.index('@')-1])
+
+  end
+
   # GET /reviews/1 or /reviews/1.json
   def show
   end

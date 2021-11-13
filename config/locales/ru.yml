@@ -23,6 +23,15 @@ ru:
     tags: Тэги
     reviewOn: Обзор на
     readMore: Читать далее...
+    forgotPassword: Забыли пароль?
+    resetPasswordInstructions: Отправить инструкции по восстановлению пароля
+    signInWith: Войти с помощью 
+  profile:
+    edit: Редактировать данные для входа
+    myReviews: Мои обзоры
+    newReview: Написать обзор
+    update: Обновить данные
+    deleteAcc: Удалить мой аккаунт
   activerecord:
     errors:
       models:
@@ -31,6 +40,10 @@ ru:
               email: 
                 blank: (поле не может быть пустым)  
               password: 
+                blank: (поле не может быть пустым)
                 too_short: (пароль слишком короткий - минимум 6 символов)
               password_confirmation: 
                 confirmation: (пароли не совпадают)
+              current_password:
+                invalid: (Неверный пароль)
+                blank: (поле не может быть пустым)

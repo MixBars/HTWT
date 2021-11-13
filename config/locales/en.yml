@@ -54,5 +54,14 @@ en:
     tags: Tags
     reviewOn: Review on
     readMore: Read more...
+    forgotPassword: Forgot your password?
+    resetPasswordInstructions: Send me reset password instructions
+    signInWith: Sign in with 
+  profile:
+    edit: Edit profile credentials
+    myReviews: My reviews
+    newReview: New review
+    update: Update
+    deleteAcc: Delete my profile!
 
   

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     devise_for :users, skip: :omniauth_callbacks
     resources :reviews
 
+    get 'myReviews', to: 'reviews#myReviews'
+
+
     root to: 'reviews#index'
   end
 end

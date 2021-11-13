@@ -1,50 +1,67 @@
-<%= link_to 'New Review', new_review_path %>
-
-My reviews:
 
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+
+
+
+
+<div class="position-relative">
+<div class="position-absolute top-20 start-50 translate-middle-x">
+<%= link_to t('profile.newReview'), new_review_path, class:"w-100 btn btn-lg btn-success"%>
+<p></p>
+<%= link_to t('profile.myReviews'), myReviews_path, class:"w-100 btn btn-lg btn-primary" %>
+<p></p>
+<h2><%= t('profile.edit') %></h2>
+
+
+
 
 
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
+  <div class="form-floating">    
+        <%= f.email_field :email, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+        <%= f.label :email, for: "floatingInput" %>
+      </div>
+<p></p>
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+<% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <div class="form-floating">
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+        <%= f.label :password,for: "floatingPassword" %>
+      </div>
+      <p></p>
+      <div class="form-floating">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingPassword1", placeholder:"Password" %>
+        <%= f.label :password_confirmation, for: "floatingPassword1" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+  <p></p>
+Current password (we need your current password to confirm your changes)<br />
+    
+  <div class="form-floating ">
+    
+    
 
+    <%= f.password_field :current_password, autocomplete: "new-password", class:"form-control", id:"floatingPassword2", placeholder:"Password" %>
+    <%= f.label :current_password, for: "floatingPassword2" %>
+
+  </div>
+<p></p>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit t('profile.update'), class:"w-100 btn btn-lg btn-warning" %>
   </div>
 <% end %>
+<p></p>
+<%= button_to t('profile.deleteAcc'), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"w-100 btn btn-lg btn-danger" %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
+</div>

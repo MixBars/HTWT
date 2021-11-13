@@ -1,16 +1,20 @@
-<h2>Forgot your password?</h2>
+<div class="position-relative">
+<div class="position-absolute top-20 start-50 translate-middle-x">
+<h2><%= t('homepage.forgotPassword') %></h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-floating">    
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+    <%= f.label :email, for: "floatingInput" %>
   </div>
 
+<p></p>
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit t('homepage.resetPasswordInstructions'), class:"w-100 btn btn-lg btn-warning" %>
   </div>
 <% end %>
-
+</div>
+</div>
 <%= render "devise/shared/links" %>
