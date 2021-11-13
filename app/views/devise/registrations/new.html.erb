@@ -1,34 +1,36 @@
 <div class="position-relative">
 <div class="position-absolute top-20 start-50 translate-middle-x">
-<h2>Sign up</h2>
+<h2><%= t('navbar.signUp') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  <main class="form-signin">
+    <form>  
+      <div class="form-floating">    
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+        <%= f.label :email, for: "floatingInput" %>
+      </div>
+      <p></p>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <div class="form-floating">
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+        <%= f.label :password, for: "floatingPassword" %>
+      </div>
+      <p></p>
+      <div class="form-floating">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+        <%= f.label :password_confirmation, for: "floatingPassword" %>
+      </div>
+      <p></p>
+      <%= f.submit t('navbar.signUp'), class:"w-100 btn btn-lg btn-primary" %>
+    </form>
+  </main>
+  <% end %>
+<br/>
+</div>
+</div>
 
 <%= render "devise/shared/links" %>
 
-</div>
-</div>
