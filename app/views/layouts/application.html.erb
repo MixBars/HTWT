@@ -63,7 +63,7 @@
           <% if user_signed_in? %>
       
       
-          <%= link_to t('navbar.myProfile'), edit_user_registration_path, {class: "nav-link active", 'aria-current':"page"} %>
+          <%= link_to t('navbar.myProfile'), user_path(current_user), {class: "nav-link active", 'aria-current':"page"} %>
           <%= link_to t('navbar.logOut'), destroy_user_session_path, {:method => :delete, class: "nav-link active", 'aria-current':"page"} %>
           
       

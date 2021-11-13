@@ -1,0 +1,6 @@
+<% if current_user.email == @user.email %>
+<h3>Your profile</h3>
+<%= link_to t('profile.newReview'), new_review_path, class:"w-100 btn btn-lg btn-success"%>
+<%end%>
+<h2><b><%= @user.email[0..@user.email.index('@')-1]%></b>'s reviews</h2>
+

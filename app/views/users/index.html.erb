@@ -1,0 +1,4 @@
+<h2>Users list: </h2>
+<% @users.each do |user| %>
+<%= link_to user.email, user %> <%= user.admin %><br />
+<%end%>
