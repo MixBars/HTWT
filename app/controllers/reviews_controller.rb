@@ -7,11 +7,6 @@ class ReviewsController < ApplicationController
     @reviewsLast = Review.last(3).reverse
   end
 
-  def myReviews
-    @reviews = Review.where(created_by: current_user.email[0..current_user.email.index('@')-1])
-
-  end
-
   # GET /reviews/1 or /reviews/1.json
   def show
   end
@@ -23,6 +18,10 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    if set_review.authorEmail == current_user.email || current_user.admin
+    else
+      redirect_to root_path
+    end
   end
 
   # POST /reviews or /reviews.json
@@ -37,6 +36,15 @@ class ReviewsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /reviews/1 or /reviews/1.json
+  def destroy
+    @review.destroy
+    respond_to do |format|
+      format.html { redirect_to reviews_url, notice: "Review was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 
@@ -57,14 +65,7 @@ class ReviewsController < ApplicationController
   end
   end
 
-  # DELETE /reviews/1 or /reviews/1.json
-  def destroy
-    @review.destroy
-    respond_to do |format|
-      format.html { redirect_to reviews_url, notice: "Review was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -75,6 +76,6 @@ class ReviewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def review_params
       
-    params.require(:review).permit(:group, :name, :body, :rating).merge(created_by: current_user.email[0..current_user.email.index('@')-1])
+    params.require(:review).permit(:group, :name, :body, :rating).merge(created_by: current_user.email[0..current_user.email.index('@')-1], authorEmail: current_user.email)
     
 end

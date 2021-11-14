@@ -9,7 +9,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def sort
+  
+  end
+  
   def show
     @user=User.find(params[:id])
+    
+    @reviews = Review.where(authorEmail: @user.email).sort_by{|e| e[params[:sort]]}
+
+     
+    
   end
 end

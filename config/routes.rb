@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :reviews
     resources :users, only: [:index, :show, :edit, :update]
 
-    get 'myReviews', to: 'reviews#myReviews'
+    
 
 
     root to: 'reviews#index'
