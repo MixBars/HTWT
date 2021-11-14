@@ -24,7 +24,7 @@
   <% @reviews.each_with_index do |review, index| %>
     <tr>
       <th scope="row"><h5><%= index+1 %></h5></th>
-      <td><h5><%= review.group%></h5></td>
+      <td><h5><%= review.category.name%></h5></td>
       <td><h5><%= review.name%></h5></td>
       <td><h5><%= review.created_at%></h5></td>
       <td><h5><%= review.updated_at%></h5></td>
