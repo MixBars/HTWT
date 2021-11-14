@@ -1,8 +1,9 @@
-<% if current_user.email == @user.email %>
+
+<% if user_signed_in? && current_user.email == @user.email %>
 <h3>Your profile</h3>
 <%= link_to t('profile.newReview'), new_review_path, class:"w-100 btn btn-lg btn-success"%><p></p>
 <%end%>
-<% if current_user.admin %>
+<% if user_signed_in? && current_user.admin %>
 <%= link_to 'Admin panel', users_path, class:"w-100 btn btn-lg btn-danger"%><p></p>
 <%end%>
 
@@ -29,7 +30,7 @@
       <td><h5><%= review.created_at%></h5></td>
       <td><h5><%= review.updated_at%></h5></td>
       <td><%= link_to 'Show', review, class:"btn btn-lg btn-success"%> 
-      <% if current_user.admin || current_user.email == review.authorEmail %>
+      <% if user_signed_in? && (current_user.admin || current_user.email == review.authorEmail) %>
       <%= link_to 'Edit', edit_review_path(review), class:"btn btn-lg btn-warning" %>
       <%= link_to 'Destroy', review, :method => :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-lg btn-danger" %>
       </td>

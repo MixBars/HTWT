@@ -31,7 +31,15 @@
     <%= form.number_field :rating %>
   </div>
   
+<% if current_user.admin %>
   
+  <div class="field">
+    <%= form.label :authorEmail %>
+    <%= form.select :authorEmail, @users %>
+  </div>
+    
+  
+<%end%>
   <div class="actions">
     <%= form.submit %>
   </div>

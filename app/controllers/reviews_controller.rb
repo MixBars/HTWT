@@ -9,16 +9,19 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1 or /reviews/1.json
   def show
+    @user = User.find_by(email: set_review.authorEmail)
   end
 
   # GET /reviews/new
   def new
+    @users = User.select(:email).map(&:email)
     @review = Review.new
   end
 
   # GET /reviews/1/edit
   def edit
     if set_review.authorEmail == current_user.email || current_user.admin
+      @users = User.select(:email).map(&:email)
     else
       redirect_to root_path
     end
@@ -27,6 +30,7 @@ class ReviewsController < ApplicationController
   # POST /reviews or /reviews.json
   def create
     @review = Review.new(review_params)
+    
 
     respond_to do |format|
       if @review.save
@@ -75,7 +79,11 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      
-    params.require(:review).permit(:group, :name, :body, :rating).merge(created_by: current_user.email[0..current_user.email.index('@')-1], authorEmail: current_user.email)
-    
+    if current_user.admin   
+      params.require(:review).permit(:group, :name, :body, :rating, :authorEmail)
+
+    else
+      params.require(:review).permit(:group, :name, :body, :rating).merge(authorEmail: current_user.email)
+    end  
+  
 end
