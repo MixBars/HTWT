@@ -1,23 +1,22 @@
-
 <% if user_signed_in? && current_user.email == @user.email %>
-<h3>Your profile</h3>
+<h3><%=t('profile.yourProfile')%></h3>
 <%= link_to t('profile.newReview'), new_review_path, class:"w-100 btn btn-lg btn-success"%><p></p>
 <%end%>
 <% if user_signed_in? && current_user.admin %>
 <%= link_to 'Admin panel', users_path, class:"w-100 btn btn-lg btn-danger"%><p></p>
 <%end%>
 
-<h2><b><%= @user.email[0..@user.email.index('@')-1]%></b>'s reviews</h2>
+<h2><b><%= t('profile.whoisReviews') +' '+ @user.email[0..@user.email.index('@')-1]%></b></h2>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col"><h5>#</h5></th>
-      <th scope="col"><h5><%=link_to 'Category', :sort=>'group' %></h5></th>
-      <th scope="col"><h5><%=link_to 'Name', :sort=>'name' %></h5></th>
-      <th scope="col"><h5><%=link_to 'Created at', :sort=>'created_at' %></h5></th>
-      <th scope="col"><h5><%=link_to 'Edited at', :sort=>'updated_at' %></h5></th>
-      <th scope="col"><h5>Options</h5></th>
+      <th scope="col"><h5><%=link_to t('profile.category'), :sort=>'group' %></h5></th>
+      <th scope="col"><h5><%=link_to t('profile.name'), :sort=>'name' %></h5></th>
+      <th scope="col"><h5><%=link_to t('profile.created_at'), :sort=>'created_at' %></h5></th>
+      <th scope="col"><h5><%=link_to t('profile.edited_at'), :sort=>'updated_at' %></h5></th>
+      <th scope="col"><h5><%=t('profile.options')%></h5></th>
     </tr>
   </thead>
   <tbody>
@@ -29,10 +28,10 @@
       <td><h5><%= review.name%></h5></td>
       <td><h5><%= review.created_at%></h5></td>
       <td><h5><%= review.updated_at%></h5></td>
-      <td><%= link_to 'Show', review, class:"btn btn-lg btn-success"%> 
+      <td><%= link_to t('profile.show'), review, class:"btn btn-success"%> 
       <% if user_signed_in? && (current_user.admin || current_user.email == review.authorEmail) %>
-      <%= link_to 'Edit', edit_review_path(review), class:"btn btn-lg btn-warning" %>
-      <%= link_to 'Destroy', review, :method => :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-lg btn-danger" %>
+      <%= link_to t('profile.edit'), edit_review_path(review), class:"btn btn-warning" %>
+      <%= link_to t('profile.destroy'), review, :method => :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
       </td>
       <% end %>
     </tr>

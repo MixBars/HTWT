@@ -27,6 +27,7 @@
             <%= t('navbar.reviewscategories') %>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><%= link_to 'all', reviews_path, class:"dropdown-item" %></a></li>
             <li><a class="dropdown-item" href="#"><%= t('navbar.movies') %></a></li>
             <li><a class="dropdown-item" href="#"><%= t('navbar.series') %></a></li>
             <li><a class="dropdown-item" href="#"><%= t('navbar.books') %></a></li>

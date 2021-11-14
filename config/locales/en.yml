@@ -63,5 +63,19 @@ en:
     newReview: New review
     update: Update
     deleteAcc: Delete my profile!
+    category: Category
+    name: Title of product
+    created_at: Created at
+    edited_at: Edited at
+    options: Options
+    whoisReviews: Reviews by user 
+    yourProfile: Your profile
+    show: Show
+    edit: Edit
+    destroy: Delete
+  review:
+    edited: Review was successfully updated
+    created: Review was successfully created
+    destroyed: Review was successfully destroyed
 
   

@@ -4,7 +4,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
-    @reviewsLast = Review.last(3).reverse
+    @reviews = Review.all
+    
   end
 
   # GET /reviews/1 or /reviews/1.json
@@ -34,7 +35,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: "Review was successfully created." }
+        format.html { redirect_to @review, notice: t('review.created') }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +48,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: "Review was successfully destroyed." }
+      format.html { redirect_to reviews_url, notice: t('review.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -58,7 +59,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.update(review_params)
         
-          format.html { redirect_to @review, notice: "Review was successfully updated." }
+          format.html { redirect_to @review, notice: t('review.edited')}
           format.json { render :show, status: :ok, location: @review }
         
       else

@@ -32,6 +32,20 @@ ru:
     newReview: Написать обзор
     update: Обновить данные
     deleteAcc: Удалить мой аккаунт
+    category: Категория
+    name: Название произведения
+    created_at: Создано
+    edited_at: Отредактировано
+    options: Действия
+    whoisReviews: Обзоры пользователя
+    yourProfile: Ваш профиль
+    show: Показать
+    edit: Редактировать
+    destroy: Удалить
+  review:
+    edited: Обзор был успешно отредактирован
+    created: Обзор был успешно создан
+    destroyed: Обзор был успешно удален
   activerecord:
     errors:
       models:
