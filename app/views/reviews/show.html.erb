@@ -21,14 +21,15 @@
 
 <p>
   <strong>Created by:</strong>
-  <%= link_to @review.authorEmail[0..@review.authorEmail.index('@')-1], @user %>
+  <%= link_to @review.authorEmail[0..@review.authorEmail.index('@')-1] + '('+ @countUserLikes+' likes)', @user %>
 </p>
 
 
 
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_review_path(@review) %> 
-
+<%= button_to 'Like', review_likes_path(@review), method: :post %>
+<p><%= @review.likes.count %> <%= (@review.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 <%end%>
 
 <%= link_to 'Back', :back %>

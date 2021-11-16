@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1 or /reviews/1.json
   def show
     @user = User.find_by(email: set_review.authorEmail)
-    
+    @countUserLikes = countUserLikes(@user)
   end
 
   # GET /reviews/new
@@ -78,6 +78,17 @@ class ReviewsController < ApplicationController
   
 
   private
+
+  def countUserLikes(user)
+    @reviews = Review.where(authorEmail: user.email)
+    sum = 0
+    @reviews.each do |review|
+      sum += review.likes.count
+    end
+    return sum.to_s
+  end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])

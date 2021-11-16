@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /en|ru/ do
     
     devise_for :users, skip: :omniauth_callbacks
-    resources :reviews
+    resources :reviews do
+      resources :likes
+    end
     resources :users, only: [:index, :show, :edit, :update]
 
     

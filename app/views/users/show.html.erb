@@ -6,7 +6,7 @@
 <%= link_to 'Admin panel', users_path, class:"w-100 btn btn-lg btn-danger"%><p></p>
 <%end%>
 
-<h2><b><%= t('profile.whoisReviews') +' '+ @user.email[0..@user.email.index('@')-1]%></b></h2>
+<h2><b><%= t('profile.whoisReviews') +' '+ @showUserInfo %></b></h2>
 
 <table class="table">
   <thead>

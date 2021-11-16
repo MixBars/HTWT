@@ -18,7 +18,23 @@ class UsersController < ApplicationController
     
     @reviews = Review.where(authorEmail: @user.email).sort_by{|e| e[params[:sort]]}
 
-     
+    @showUserInfo = getUserNick(@user) + ' (' + countUserLikes(@user) + ' likes)'
     
   end
+
+  private
+
+  def countUserLikes(user)
+    @reviews = Review.where(authorEmail: user.email)
+    sum = 0
+    @reviews.each do |review|
+      sum += review.likes.count
+    end
+    return sum.to_s
+  end
+
+  def getUserNick(user)
+    user.email[0..user.email.index('@')-1]
+  end
+
 end
