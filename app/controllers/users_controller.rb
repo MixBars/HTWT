@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   private
 
+  
   def countUserLikes(user)
     @reviews = Review.where(authorEmail: user.email)
     sum = 0

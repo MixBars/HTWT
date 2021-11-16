@@ -1,20 +1,18 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[new edit create update destroy]
+  before_action :userLikeOnReview 
 
-  # GET /reviews or /reviews.json
   def index
     @reviews = Review.all
     
   end
 
-  # GET /reviews/1 or /reviews/1.json
   def show
-    @user = User.find_by(email: set_review.authorEmail)
-    @countUserLikes = countUserLikes(@user)
+    @author = getAuthor(set_review)
+    @showAuthorInfo = getAuthorNick(set_review) + ' (' + countUserLikes(getAuthor(set_review)) + ' likes)'
   end
 
-  # GET /reviews/new
   def new
     @users = User.select(:email).map(&:email)
     @categories = Category.all
@@ -22,7 +20,6 @@ class ReviewsController < ApplicationController
 
   end
 
-  # GET /reviews/1/edit
   def edit
     
     if set_review.authorEmail == current_user.email || current_user.admin
@@ -33,7 +30,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # POST /reviews or /reviews.json
   def create
     @review = Review.new(review_params)
     
@@ -49,7 +45,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # DELETE /reviews/1 or /reviews/1.json
   def destroy
     @review.destroy
     respond_to do |format|
@@ -58,7 +53,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reviews/1 or /reviews/1.json
   def update
     
     respond_to do |format|
@@ -79,6 +73,18 @@ class ReviewsController < ApplicationController
 
   private
 
+  def userLikeOnReview
+    @like = Like.where(user_id: current_user.id, review_id: params[:id])
+   end
+  
+  def getAuthorNick(review)
+    review.authorEmail[0..review.authorEmail.index('@')-1]
+  end
+
+  def getAuthor(review)
+    User.find_by(email: review.authorEmail)
+  end
+
   def countUserLikes(user)
     @reviews = Review.where(authorEmail: user.email)
     sum = 0
@@ -89,12 +95,11 @@ class ReviewsController < ApplicationController
   end
 
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+ 
     def review_params
     if current_user.admin   
       params.require(:review).permit(:category_id, :name, :body, :rating, :authorEmail)
