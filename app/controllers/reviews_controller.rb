@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
   def show
     @author = getAuthor(set_review)
     
-    @showAuthorInfo = getAuthorNick(set_review) + ' (' + countUserLikes(getAuthor(set_review)) + ' likes)'
+    @showAuthorInfo = getAuthorNick(set_review) + ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(set_review)) + ')'
     
   end
 
@@ -106,10 +106,10 @@ class ReviewsController < ApplicationController
  
     def review_params
     if current_user.admin   
-      params.require(:review).permit(:category_id, :name, :body, :rating, :authorEmail)
+      params.require(:review).permit(:category_id, :name, :content, :rating, :authorEmail)
 
     else
-      params.require(:review).permit(:category_id, :name, :body, :rating).merge(authorEmail: current_user.email)
+      params.require(:review).permit(:category_id, :name, :content, :rating).merge(authorEmail: current_user.email)
     end  
   
 end

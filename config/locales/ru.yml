@@ -17,6 +17,7 @@ ru:
     ruru: Русский
     or: или
     signUp: Зарегистрироваться
+    typesearch: Введите что-нибудь...
   homepage:
     mostLiked: Самые популярные
     lastAdded: Последние добавленные
@@ -42,6 +43,8 @@ ru:
     show: Показать
     edit: Редактировать
     destroy: Удалить
+    likesCount: "Лайков: "
+    resetFiltres: "Сбросить сотрировочные фильтры"
   review:
     chooseCategory: "Выберите категорию обзора: "
     edited: Обзор был успешно отредактирован
@@ -50,6 +53,16 @@ ru:
     confirm: Вы уверены?
     like: Мне нравится
     unlike: Больше не нравится
+    author: Обзор пользователя
+    group: "Категория обзора: "
+    name: "Название произведения: "
+    content: "Текст обзора: "
+    authorRating: "Рейтинг автора: "
+    goBack: Назад
+    new: Новый обзор
+    myRating: "Моя оценка: "
+    edit: Редактирование обзора
+    create: Сохранить обзор
   activerecord:
     errors:
       models:

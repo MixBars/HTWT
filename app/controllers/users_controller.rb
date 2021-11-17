@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @reviews = Review.where(authorEmail: @user.email)
     
 
-    @showUserInfo = getUserNick(@user) + ' (' + countUserLikes(@user) + ' likes)'
+    @showUserInfo = getUserNick(@user) + ' (' + t('profile.likesCount') + countUserLikes(@user) + ')'
     
   end
 

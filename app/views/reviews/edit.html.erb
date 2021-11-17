@@ -1,6 +1,6 @@
-<h1>Editing Review</h1>
+<h1><%= t('review.edit')%></h1>
 
 <%= render 'form', review: @review %>
 
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+
+<%= link_to t('review.goBack'), :back, class:"btn btn-primary" %>

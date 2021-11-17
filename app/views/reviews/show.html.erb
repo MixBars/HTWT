@@ -1,15 +1,14 @@
-
-<div class="h-100 p-2 bg-info border rounded-3">
-  <h3>Review by user <%= link_to @showAuthorInfo, @author %></h3>
+<div class="h-100 p-2 bg-primary border rounded-3">
+  <h3><p class="text-white"><%= t('review.author')%> <%= link_to @showAuthorInfo, @author, class:"link-light" %></p> </h3>
   <div class="h-100 p-3 bg-light border rounded-3">
-    <p><strong>Review group: </strong><%= @review.category.name %></p>
-    <p><strong>Name of product: </strong><%= @review.name %></p>
-    <strong>Review text:</strong>
+    <p><strong><%= t('review.group')%></strong><%= @review.category.name %></p>
+    <p><strong><%= t('review.name')%></strong><%= @review.name %></p>
+    <strong><%= t('review.content')%></strong>
     <p><div class="h-100 p-3 bg-light border rounded-3">
-    <%= @review.body %>
+    <%= @review.content %>
     </div></p>
     
-    <p><strong>My rating of product: </strong><%= @review.rating %></p>
+    <p><strong><%= t('review.authorRating')%></strong><%= @review.rating %></p>
 
     <% if user_signed_in? %>
     <% if current_user.admin || current_user.email == @review.authorEmail %>
@@ -25,13 +24,13 @@
     <%end%>
     
     <%end%>
-    <strong><%= @review.likes.count.to_s + ' likes'%></strong>
+    <strong><%= t('profile.likesCount')+ @review.likes.count.to_s%></strong>
     
   </div>
 
 </div>
 <p></p>
-<%= link_to 'Go Back', :back, class:"btn btn-primary" %>
+<%= link_to t('review.goBack'), :back, class:"btn btn-primary" %>
 
 
 

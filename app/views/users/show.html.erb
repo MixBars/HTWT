@@ -9,7 +9,7 @@
 <h2><b><%= t('profile.whoisReviews') +' '+ @showUserInfo %></b></h2>
 
 <% if params[:sort] || params[:category]%>
-<%= link_to 'Reset sorting filters', :category=>nil, :sort=>nil %>
+<%= link_to t("profile.resetFiltres"), :category=>nil, :sort=>nil %>
 <%end%>
 <table class="table">
   <thead>
@@ -28,7 +28,7 @@
       
       </h5></th>
       <th scope="col"><h5><%= t('profile.name') %></h5></th>
-      <th scope="col"><h5><%=link_to t('profile.created_at'), :sort=>'created_at',  :category=>params[:category] %></h5></th>
+      <th scope="col"><h5><%=link_to t('profile.created_at'), :sort=>'created_at',  :category=>params[:category]%></h5></th>
       <th scope="col"><h5><%=link_to t('profile.edited_at'), :sort=>'updated_at', :category=>params[:category] %></h5></th>
       <th scope="col"><h5><%=t('profile.options')%></h5></th>
     

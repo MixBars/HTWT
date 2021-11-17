@@ -48,6 +48,7 @@ en:
     ruru: Русский
     or: or
     signUp: Sign up
+    typesearch: Type something...
   homepage:
     mostLiked: Most liked
     lastAdded: Last added
@@ -73,6 +74,8 @@ en:
     show: Show
     edit: Edit
     destroy: Delete 
+    likesCount: "Likes: "
+    resetFiltres: "Reset sorting filtres"
   review:
     chooseCategory: "Choose review's category: "
     edited: Review was successfully updated
@@ -81,5 +84,15 @@ en:
     confirm: Are you sure?
     like: I like it
     unlike: No longer like
+    author: Review by user 
+    group: "Review category: "
+    name: "Title of product: "
+    content: "Review text: "
+    authorRating: "Author rating: "
+    goBack: "Go back"
+    new: New review
+    myRating: "My rating: "
+    edit: Edit review
+    create: Save review
 
   
