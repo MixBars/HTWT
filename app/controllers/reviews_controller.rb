@@ -10,7 +10,9 @@ class ReviewsController < ApplicationController
 
   def show
     @author = getAuthor(set_review)
+    
     @showAuthorInfo = getAuthorNick(set_review) + ' (' + countUserLikes(getAuthor(set_review)) + ' likes)'
+    
   end
 
   def new
@@ -48,7 +50,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: t('review.destroyed') }
+      format.html { redirect_to getAuthor(@review), notice: t('review.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -74,8 +76,10 @@ class ReviewsController < ApplicationController
   private
 
   def userLikeOnReview
+    if user_signed_in?
     @like = Like.where(user_id: current_user.id, review_id: params[:id])
-   end
+    end
+  end
   
   def getAuthorNick(review)
     review.authorEmail[0..review.authorEmail.index('@')-1]

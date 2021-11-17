@@ -12,21 +12,23 @@ class LikesController < ApplicationController
   
 
  def destroy
-  
-  if !@like.exists?
-   flash[:notice] = "You can't unlike more than once"
-  else
-   
-   @like.destroy_all
+  if user_signed_in?
+    if !@like.exists?
+      flash[:notice] = "You can't unlike more than once"
+    else
+    @like.destroy_all
+    end
+   redirect_to review_path(@review)
   end
-  redirect_to review_path(@review)
  end 
 
 
   private  
   
   def userLikeOnReview
-   @like = Like.where(user_id: current_user.id, review_id: params[:review_id])
+   if user_signed_in?
+    @like = Like.where(user_id: current_user.id, review_id: params[:review_id])
+   end
   end
 
   def find_review

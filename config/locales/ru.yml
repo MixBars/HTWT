@@ -43,9 +43,13 @@ ru:
     edit: Редактировать
     destroy: Удалить
   review:
+    chooseCategory: "Выберите категорию обзора: "
     edited: Обзор был успешно отредактирован
     created: Обзор был успешно создан
     destroyed: Обзор был успешно удален
+    confirm: Вы уверены?
+    like: Мне нравится
+    unlike: Больше не нравится
   activerecord:
     errors:
       models:

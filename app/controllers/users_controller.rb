@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[index]
+  before_action :authenticate_user!, only: %i[index, show]
   
   def index
     if current_user.admin

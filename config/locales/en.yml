@@ -72,10 +72,14 @@ en:
     yourProfile: Your profile
     show: Show
     edit: Edit
-    destroy: Delete
+    destroy: Delete 
   review:
+    chooseCategory: "Choose review's category: "
     edited: Review was successfully updated
     created: Review was successfully created
     destroyed: Review was successfully destroyed
+    confirm: Are you sure?
+    like: I like it
+    unlike: No longer like
 
   

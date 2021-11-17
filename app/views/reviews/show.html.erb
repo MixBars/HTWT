@@ -1,42 +1,38 @@
 
-<p>
-  <strong>Group:</strong>
-  <%= @review.category.name %>
-</p>
+<div class="h-100 p-2 bg-info border rounded-3">
+  <h3>Review by user <%= link_to @showAuthorInfo, @author %></h3>
+  <div class="h-100 p-3 bg-light border rounded-3">
+    <p><strong>Review group: </strong><%= @review.category.name %></p>
+    <p><strong>Name of product: </strong><%= @review.name %></p>
+    <strong>Review text:</strong>
+    <p><div class="h-100 p-3 bg-light border rounded-3">
+    <%= @review.body %>
+    </div></p>
+    
+    <p><strong>My rating of product: </strong><%= @review.rating %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @review.name %>
-</p>
+    <% if user_signed_in? %>
+    <% if current_user.admin || current_user.email == @review.authorEmail %>
 
-<p>
-  <strong>Body:</strong>
-  <%= @review.body %>
-</p>
+    <%= link_to t('profile.edit'), edit_review_path(@review), class:"btn btn-warning" %>
+    <%= link_to t('profile.destroy'), @review, :method => :delete, data: { confirm: t('review.confirm') }, class:"btn btn-danger" %> 
+    <p></p>
+    <% end %>
+    <% if @like.exists? %>
+    <%= button_to t('review.unlike'), review_like_path(@review), method: :delete, class: "btn btn-info" %>
+    <% else %>
+    <%= button_to t('review.like'), review_likes_path(@review), method: :post, class: "btn btn-info" %>
+    <%end%>
+    
+    <%end%>
+    <strong><%= @review.likes.count.to_s + ' likes'%></strong>
+    
+  </div>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @review.rating %>
-</p>
-
-<p>
-  <strong>Created by:</strong>
-  <%= link_to @showAuthorInfo, @author %>
-</p>
+</div>
+<p></p>
+<%= link_to 'Go Back', :back, class:"btn btn-primary" %>
 
 
 
-<% if user_signed_in? %>
-<%= link_to 'Edit', edit_review_path(@review) %> 
-
-<% if @like.exists? %>
-  <%= button_to 'unLike', review_like_path(@review), method: :delete %>
-<% else %>
-  <%= button_to 'Like', review_likes_path(@review), method: :post %>
-<%end%>
-
-<p><%= @review.likes.count %> <%= (@review.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-<%end%>
-
-<%= link_to 'Back', :back %>
 
