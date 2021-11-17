@@ -14,9 +14,12 @@ class UsersController < ApplicationController
   end
   
   def show
+    @categories = Category.all
+
     @user=User.find(params[:id])
     
-    @reviews = Review.where(authorEmail: @user.email).sort_by{|e| e[params[:sort]]}
+    @reviews = Review.where(authorEmail: @user.email)
+    
 
     @showUserInfo = getUserNick(@user) + ' (' + countUserLikes(@user) + ' likes)'
     

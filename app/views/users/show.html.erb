@@ -8,20 +8,41 @@
 
 <h2><b><%= t('profile.whoisReviews') +' '+ @showUserInfo %></b></h2>
 
+<% if params[:sort] || params[:category]%>
+<%= link_to 'Reset sorting filters', :category=>nil, :sort=>nil %>
+<%end%>
 <table class="table">
   <thead>
+  
     <tr>
-      <th scope="col"><h5>#</h5></th>
-      <th scope="col"><h5><%=link_to t('profile.category'), :sort=>'group' %></h5></th>
+    
+      <th scope="col"><h5> #  </h5></th>
+      <th scope="col"><h5>
+      
+      
+      
+      <% @categories.each do |category|%>
+      <option><%= link_to category.name, :category=>category.id %></option>
+      <% end %>
+      
+      
+      </h5></th>
       <th scope="col"><h5><%=link_to t('profile.name'), :sort=>'name' %></h5></th>
-      <th scope="col"><h5><%=link_to t('profile.created_at'), :sort=>'created_at' %></h5></th>
-      <th scope="col"><h5><%=link_to t('profile.edited_at'), :sort=>'updated_at' %></h5></th>
+      <th scope="col"><h5><%=link_to t('profile.created_at'), :sort=>'created_at',  :category=>params[:category] %></h5></th>
+      <th scope="col"><h5><%=link_to t('profile.edited_at'), :sort=>'updated_at', :category=>params[:category] %></h5></th>
       <th scope="col"><h5><%=t('profile.options')%></h5></th>
+    
     </tr>
   </thead>
   <tbody>
-  
-  <% @reviews.each_with_index do |review, index| %>
+  <% if params[:sort].present? && params[:category].present? %>
+  <% @reviews = @reviews.where(category_id: params[:category]).sort_by{|e| e[params[:sort]]} %>
+  <% elsif params[:category].present? && !params[:sort].present? %>
+  <% @reviews = @reviews.where(category_id: params[:category])%>
+  <% elsif !params[:category].present? && params[:sort].present? %>
+  <% @reviews = @reviews.sort_by{|e| e[params[:sort]]} %>
+  <% end %>
+  <% @reviews.reverse.each_with_index do |review, index| %>
     <tr>
       <th scope="row"><h5><%= index+1 %></h5></th>
       <td><h5><%= review.category.name%></h5></td>
