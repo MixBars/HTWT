@@ -1,7 +1,4 @@
 Rails.application.routes.draw do  
-  
-  
-
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   scope '(:locale)', locale: /en|ru/ do
@@ -12,9 +9,8 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:index, :show, :edit, :update]
 
-    
-
 
     root to: 'main_page#index'
+    get "search", to: "search#search"
   end
 end

@@ -59,3 +59,6 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'

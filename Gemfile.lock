@@ -86,6 +86,19 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    elasticsearch (7.15.0)
+      elasticsearch-api (= 7.15.0)
+      elasticsearch-transport (= 7.15.0)
+    elasticsearch-api (7.15.0)
+      multi_json
+    elasticsearch-model (7.2.0)
+      activesupport (> 3)
+      elasticsearch (~> 7)
+      hashie
+    elasticsearch-rails (7.2.0)
+    elasticsearch-transport (7.15.0)
+      faraday (~> 1)
+      multi_json
     erubi (1.10.0)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
@@ -271,6 +284,8 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  elasticsearch-model
+  elasticsearch-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2 (~> 0.5)

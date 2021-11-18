@@ -63,6 +63,7 @@ ru:
     myRating: "Моя оценка: "
     edit: Редактирование обзора
     create: Сохранить обзор
+    search: Поиск обзоров
   activerecord:
     errors:
       models:

@@ -34,10 +34,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    
+    @review.update(body: @review.content)
 
     respond_to do |format|
       if @review.save
+        
         format.html { redirect_to @review, notice: t('review.created') }
         format.json { render :show, status: :created, location: @review }
       else
@@ -56,7 +57,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    
+    @review.update(body: @review.content)
     respond_to do |format|
       if @review.update(review_params)
         

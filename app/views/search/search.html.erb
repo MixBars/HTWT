@@ -1,0 +1,27 @@
+<h1><%=t('review.search')%></h1>
+<div class="row g-3 align-items-center">
+<div class="col-auto">
+<%= form_for search_path, method: :get do |f| %>
+  
+    <div class="col-auto">
+    <%= text_field_tag :q, params[:q], placeholder: t('navbar.typesearch'), class: "from form-control" %>
+<p></p>
+<%= submit_tag t('navbar.search'), name: nil, class:"btn btn-primary" %>
+  
+  </div>
+  <p></p>
+  <%= link_to t('review.goBack'), :back, class:"btn btn-primary" %>
+<% end %>
+</div>
+
+</div>
+
+<ul>
+  <% @reviews.each do |article| %>
+    <li>
+      <h3>
+        <%= link_to article.name, controller: "reviews", action: "show", id: article._id%>
+      </h3>
+    </li>
+  <% end %>
+</ul>
