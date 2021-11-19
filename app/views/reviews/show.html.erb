@@ -1,6 +1,6 @@
-<div class="h-100 p-2 bg-primary border rounded-3">
-  <h3><p class="text-white"><%= t('review.author')%> <%= link_to @showAuthorInfo, @author, class:"link-light" %></p> </h3>
-  <div class="h-100 p-3 bg-light border rounded-3">
+<div class="h-100 p-2 bg-light border rounded-3">
+  <h3><p class=""><%= t('review.author')%> <%= link_to @showAuthorInfo, @author, class:"" %></p> </h3>
+  <div class="h-100 p-3 bg-white border rounded-3">
     <p><strong><%= t('review.group')%></strong><%= @review.category.name %></p>
     <p><strong><%= t('review.name')%></strong><%= @review.name %></p>
     <strong><%= t('review.content')%></strong>

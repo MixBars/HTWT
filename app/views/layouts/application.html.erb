@@ -22,18 +22,12 @@
           
         </li>
         
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= t('navbar.reviewscategories') %>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><%= link_to 'all', reviews_path, class:"dropdown-item" %></a></li>
-            <li><a class="dropdown-item" href="#"><%= t('navbar.movies') %></a></li>
-            <li><a class="dropdown-item" href="#"><%= t('navbar.series') %></a></li>
-            <li><a class="dropdown-item" href="#"><%= t('navbar.books') %></a></li>
-            <li><a class="dropdown-item" href="#"><%= t('navbar.games') %></a></li>
+        <li class="nav-item ">
+          <%= link_to t('navbar.all'), reviews_path, {class: "nav-link active", 'aria-current':"page"} %></a>
             
-          </ul>
+            
+            
+          
         </li>         
       </ul>
       

@@ -1,3 +1,11 @@
-<%@reviews.each do |review|%>
-<h2><%= t('homepage.reviewOn')+ ' '+ review.name %> <%= link_to t('homepage.readMore'), review %></h2><br />
+
+<%@reviews.reverse.each do |review|%>
+<div class="p-2 bg-light border rounded-3">
+<h5><%= t('homepage.reviewOn')+ ' "'+ review.name + '" (' + t('profile.likesCount') + review.likes.count.to_s + ')'%> 
+<p></p>
+<%= t('review.author')%>
+<%= link_to getAuthorNick(review)+ ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(review)) + ')',getAuthor(review) %> 
+<p></p>
+<%= link_to t('homepage.readMore'), review %></h5>
+</div>
 <%end%>

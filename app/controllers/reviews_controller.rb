@@ -57,10 +57,10 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.update(body: @review.content)
+    
     respond_to do |format|
       if @review.update(review_params)
-        
+      @review.update(body: @review.content)
           format.html { redirect_to @review, notice: t('review.edited')}
           format.json { render :show, status: :ok, location: @review }
         
