@@ -26,6 +26,7 @@
 <%= t('review.author')%>
 <%= link_to getAuthorNick(review)+ ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(review)) + ')',getAuthor(review) %> 
 <p></p>
+
 <%= link_to t('homepage.readMore'), review_path(review._id) %>
 </div>
 <%end%>

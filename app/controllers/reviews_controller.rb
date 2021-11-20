@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[new edit create update destroy]
-  before_action :userLikeOnReview 
+  before_action :userLikeOnReview, :userRatingOnReview, only: %i[show]
+  before_action :userRatingOnReview, only: %i[show index]
 
   def index
     @reviews = Review.all
@@ -11,6 +12,7 @@ class ReviewsController < ApplicationController
   def show
     @author = getAuthor(set_review)
     
+    
     @showAuthorInfo = getAuthorNick(set_review) + ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(set_review)) + ')'
     
   end
@@ -19,7 +21,7 @@ class ReviewsController < ApplicationController
     @users = User.select(:email).map(&:email)
     @categories = Category.all
     @review = Review.new
-
+    
   end
 
   def edit
@@ -80,6 +82,21 @@ class ReviewsController < ApplicationController
     if user_signed_in?
     @like = Like.where(user_id: current_user.id, review_id: params[:id])
     end
+  end
+
+  def userRatingOnReview
+    if user_signed_in?
+    @rating = UserRating.where(user_id: current_user.id, review_id: params[:id])
+    end
+  end
+
+  def calculateAverageRating(review)
+    @ratings = review.user_rating
+    sum = 0.0
+    @ratings.each do |rating|
+      sum += rating.score.to_i
+    end
+    sum/@ratings.count
   end
   
   def getAuthorNick(review)

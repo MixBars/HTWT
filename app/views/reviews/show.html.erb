@@ -24,14 +24,23 @@
     <%end%>
     
     <%end%>
-    <strong><%= t('profile.likesCount')+ @review.likes.count.to_s%></strong>
+    <strong><%= t('profile.likesCount')+ @review.likes.count.to_s%></strong> |
+    <strong>Average User's rating: <%= calculateAverageRating(@review) %></strong>
     
   </div>
-
+  <p></p>
+  <% if user_signed_in? %>
+  <% if !@rating.exists? %>
+<%= link_to 'Rate 1', review_user_ratings_path(@review, :score => 1), method: :post,  class: "btn btn-info" %>
+<%= link_to 'Rate 2', review_user_ratings_path(@review, :score => 2), method: :post,  class: "btn btn-info" %>
+<%= link_to 'Rate 3', review_user_ratings_path(@review, :score => 3), method: :post,  class: "btn btn-info" %>
+<%= link_to 'Rate 4', review_user_ratings_path(@review, :score => 4), method: :post,  class: "btn btn-info" %>
+<%= link_to 'Rate 5', review_user_ratings_path(@review, :score => 5), method: :post,  class: "btn btn-info" %>
+<%else%>
+<%= link_to 'Unrate', review_user_rating_path(@review), method: :delete, class: "btn btn-info" %>
+<%end%>
+<%end%>
 </div>
 <p></p>
 <%= link_to t('review.goBack'), :back, class:"btn btn-primary" %>
-
-
-
 

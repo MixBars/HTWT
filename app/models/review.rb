@@ -8,6 +8,7 @@ class Review < ApplicationRecord
 
  belongs_to :category
  has_many :likes, dependent: :destroy
+ has_many :user_rating, dependent: :destroy
  
 
  

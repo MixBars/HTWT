@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     devise_for :users, skip: :omniauth_callbacks
     resources :reviews do
       resources :likes
+      resources :user_ratings
     end
     resources :users, only: [:index, :show, :edit, :update]
 
