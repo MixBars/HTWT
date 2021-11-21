@@ -2,12 +2,12 @@
   <div class="container " id="featured-3">
     <h2 class="pb-2 border-bottom"> <%= t('homepage.mostLiked') %> </h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-    <% @reviewsLast.each do |review| %>
+    <% @reviewsRated.each do |review| %>
       <div class="col d-flex align-items-start">
         
         <div>
           <h2>  <%= t('homepage.reviewOn') + ' ' + review.name %></h2>
-          Average User's rating: <%= calculateAverageRating(review) %>
+          Average User's rating: <%= review.user_rating.average('score').to_d %>
           <p><%= review.content %></p>
           
           <%= link_to t('homepage.readMore'), review %> 
@@ -29,7 +29,7 @@
       
         <div>
           <h2><%= t('homepage.reviewOn') + ' ' +  review.name %></h2>
-          Average User's rating: <%= calculateAverageRating(review) %>
+          Average User's rating: <%= review.user_rating.average('score').to_d %>
           <p><%= review.content%></p>
           <%= link_to t('homepage.readMore'), review %> 
         </div>

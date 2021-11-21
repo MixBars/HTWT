@@ -90,14 +90,7 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def calculateAverageRating(review)
-    @ratings = review.user_rating
-    sum = 0.0
-    @ratings.each do |rating|
-      sum += rating.score.to_i
-    end
-    sum/@ratings.count
-  end
+  
   
   def getAuthorNick(review)
     review.authorEmail[0..review.authorEmail.index('@')-1]

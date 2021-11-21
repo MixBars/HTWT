@@ -25,7 +25,7 @@
     
     <%end%>
     <strong><%= t('profile.likesCount')+ @review.likes.count.to_s%></strong> |
-    <strong>Average User's rating: <%= calculateAverageRating(@review) %></strong>
+    <strong>Average User's rating: <%= @review.user_rating.average('score').to_d %></strong>
     
   </div>
   <p></p>

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def show
     @categories = Category.all
 
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
     
     @reviews = Review.where(authorEmail: @user.email)
     

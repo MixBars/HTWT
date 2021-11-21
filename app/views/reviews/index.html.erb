@@ -6,7 +6,7 @@
 <%= t('review.author')%>
 <%= link_to getAuthorNick(review)+ ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(review)) + ')',getAuthor(review) %> 
 <p></p>
-Average User's rating: <%= calculateAverageRating(review) %>
+Average User's rating: <%= review.user_rating.average('score').to_d %>
 <p></p>
 <%= link_to t('homepage.readMore'), review %></h5>
 </div>
