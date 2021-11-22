@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /en|ru/ do
     
     devise_for :users, skip: :omniauth_callbacks
+    resources :tags, only: [:show]
     resources :reviews do
       resources :likes
       resources :user_ratings
+  
     end
     resources :users, only: [:index, :show, :edit, :update]
 

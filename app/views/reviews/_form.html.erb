@@ -52,7 +52,10 @@
     
   </div>
 
-  
+    <div class="field">
+    <%= form.label :all_tags %>
+    <%= form.text_field :all_tags, class: "form-control" %>
+  </div>
   
 <% if current_user.admin %>
   
@@ -60,7 +63,8 @@
     <%= form.label :authorEmail %>
     <%= form.select :authorEmail, @users %>
   </div>
-    
+  
+
   
 <%end%>
   

@@ -117,10 +117,10 @@ class ReviewsController < ApplicationController
  
     def review_params
     if current_user.admin   
-      params.require(:review).permit(:category_id, :name, :content, :rating, :authorEmail)
+      params.require(:review).permit(:category_id, :name, :content, :rating, :authorEmail, :all_tags)
 
     else
-      params.require(:review).permit(:category_id, :name, :content, :rating).merge(authorEmail: current_user.email)
+      params.require(:review).permit(:category_id, :name, :content, :rating, :all_tags).merge(authorEmail: current_user.email)
     end  
   
 end

@@ -1,4 +1,5 @@
 <main>
+
   <div class="container " id="featured-3">
     <h2 class="pb-2 border-bottom"> <%= t('homepage.mostLiked') %> </h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
@@ -6,11 +7,18 @@
       <div class="col d-flex align-items-start">
         
         <div>
-          <h2>  <%= t('homepage.reviewOn') + ' ' + review.name %></h2>
-          Average User's rating: <%= review.user_rating.average('score').to_d %>
-          <p><%= review.content %></p>
+          <h2><%= t('homepage.reviewOn') + ' "' + review.name + '"' %></h2>
+          <%= raw review.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "btn btn-primary btn-sm"}.join(' ')%>
           
-          <%= link_to t('homepage.readMore'), review %> 
+          <p><%= t('homepage.avg') %>: <%= review.user_rating.average('score').to_d %></p>
+          
+          <p><% if review.content.to_plain_text.length < 500 %> 
+          <%= review.content %>
+          <%else%>
+          <%= review.content.to_plain_text[0..500] + '...' %>
+          <%end%></p>
+          
+          <%= link_to t('homepage.readMore'), review, class:"btn btn-primary" %> 
           
         </div>
       </div>
@@ -28,10 +36,19 @@
       <div class="col d-flex align-items-start">
       
         <div>
-          <h2><%= t('homepage.reviewOn') + ' ' +  review.name %></h2>
-          Average User's rating: <%= review.user_rating.average('score').to_d %>
-          <p><%= review.content%></p>
-          <%= link_to t('homepage.readMore'), review %> 
+          <h2><%= t('homepage.reviewOn') + ' "' + review.name + '"' %></h2>
+          <%= raw review.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "btn btn-primary btn-sm"}.join(' ')%>
+          
+          <p><%= t('homepage.avg') %>: <%= review.user_rating.average('score').to_d %></p>
+          
+          <p><% if review.content.to_plain_text.length < 500 %> 
+          <%= review.content %>
+          <%else%>
+          <%= review.content.to_plain_text[0..500] + '...' %>
+          <%end%></p>
+          
+          <%= link_to t('homepage.readMore'), review, class:"btn btn-primary" %>
+          
         </div>
       </div>
       <% end%>

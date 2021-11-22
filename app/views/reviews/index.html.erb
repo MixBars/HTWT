@@ -1,13 +1,32 @@
-
 <%@reviews.reverse.each do |review|%>
-<div class="p-2 bg-light border rounded-3">
-<h5><%= t('homepage.reviewOn')+ ' "'+ review.name + '" (' + t('profile.likesCount') + review.likes.count.to_s + ')'%> 
-<p></p>
-<%= t('review.author')%>
+<div class="card">
+  <div class="card-header">
+    <%= t('review.author')%>
 <%= link_to getAuthorNick(review)+ ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(review)) + ')',getAuthor(review) %> 
-<p></p>
-Average User's rating: <%= review.user_rating.average('score').to_d %>
-<p></p>
-<%= link_to t('homepage.readMore'), review %></h5>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= t('homepage.reviewOn')+ ' "'+ review.name+'"'%> 
+    <%= raw review.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "btn btn-primary btn-sm"}.join(' ')%>
+    </h5>
+    <p class="card-text">
+    
+    <% if review.content.to_plain_text.length < 1000 %> 
+    <%= review.content %>
+    <%else%>
+    <%= review.content.to_plain_text[0..1000] + '...' %>
+    <%end%>
+    </p>
+    <%= link_to t('homepage.readMore'), review, class:"btn btn-primary" %>
+    <p></p>
+    <%= t('homepage.avg') %>: <%= review.user_rating.average('score').to_d %>
+  </div>
+  <div class="card-footer text-muted">
+    <%= t('profile.created_at') + ' '+ review.created_at.to_s%> 
+    <% if review.created_at.to_s != review.updated_at.to_s %>
+   | <%= t('profile.edited_at') + ' '+ review.updated_at.to_s%>
+    <% end %>
+    
+  </div>
 </div>
+<p></p>
 <%end%>

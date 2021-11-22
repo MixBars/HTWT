@@ -58,6 +58,7 @@ en:
     readMore: Read more...
     forgotPassword: Forgot your password?
     resetPasswordInstructions: Send me reset password instructions
+    avg: Average review rating
     signInWith: Sign in with 
   profile:
     edit: Edit profile credentials

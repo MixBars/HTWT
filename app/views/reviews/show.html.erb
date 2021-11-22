@@ -1,46 +1,59 @@
-<div class="h-100 p-2 bg-light border rounded-3">
-  <h3><p class=""><%= t('review.author')%> <%= link_to @showAuthorInfo, @author, class:"" %></p> </h3>
-  <div class="h-100 p-3 bg-white border rounded-3">
-    <p><strong><%= t('review.group')%></strong><%= @review.category.name %></p>
-    <p><strong><%= t('review.name')%></strong><%= @review.name %></p>
-    <strong><%= t('review.content')%></strong>
-    <p><div class="h-100 p-3 bg-light border rounded-3">
-    <%= @review.content %>
-    </div></p>
-    
-    <p><strong><%= t('review.authorRating')%></strong><%= @review.rating %></p>
-
-    <% if user_signed_in? %>
-    <% if current_user.admin || current_user.email == @review.authorEmail %>
-
-    <%= link_to t('profile.edit'), edit_review_path(@review), class:"btn btn-warning" %>
-    <%= link_to t('profile.destroy'), @review, :method => :delete, data: { confirm: t('review.confirm') }, class:"btn btn-danger" %> 
-    <p></p>
-    <% end %>
-    <% if @like.exists? %>
-    <%= button_to t('review.unlike'), review_like_path(@review), method: :delete, class: "btn btn-info" %>
-    <% else %>
-    <%= button_to t('review.like'), review_likes_path(@review), method: :post, class: "btn btn-info" %>
-    <%end%>
-    
-    <%end%>
-    <strong><%= t('profile.likesCount')+ @review.likes.count.to_s%></strong> |
-    <strong>Average User's rating: <%= @review.user_rating.average('score').to_d %></strong>
+<div class="card">
+  <div class="card-header">
+  
+    <%= t('review.author')%> <%= link_to @showAuthorInfo, @author %> 
+    | <%= t('homepage.avg') %>: <%= @review.user_rating.average('score').to_d %>
     
   </div>
-  <p></p>
-  <% if user_signed_in? %>
-  <% if !@rating.exists? %>
-<%= link_to 'Rate 1', review_user_ratings_path(@review, :score => 1), method: :post,  class: "btn btn-info" %>
-<%= link_to 'Rate 2', review_user_ratings_path(@review, :score => 2), method: :post,  class: "btn btn-info" %>
-<%= link_to 'Rate 3', review_user_ratings_path(@review, :score => 3), method: :post,  class: "btn btn-info" %>
-<%= link_to 'Rate 4', review_user_ratings_path(@review, :score => 4), method: :post,  class: "btn btn-info" %>
-<%= link_to 'Rate 5', review_user_ratings_path(@review, :score => 5), method: :post,  class: "btn btn-info" %>
-<%else%>
-<%= link_to 'Unrate', review_user_rating_path(@review), method: :delete, class: "btn btn-info" %>
-<%end%>
-<%end%>
+  <div class="card-body">
+    <h5 class="card-title">
+    <p><%= t('review.group')%><%= @review.category.name %></p>
+    <p><%= t('review.name') + ' "'+ @review.name + '"' %></p>
+    <p><%= t('review.content')%></p>
+    </h5>
+    <p>
+    <div class="h-100 p-3 bg-light border rounded-3">
+    <%= @review.content %>
+    </div>
+    <h5 class="card-title">
+    </p>
+    <%= t('review.authorRating')%><%= @review.rating %>
+    </h5>
+    <%= raw @review.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "btn btn-primary btn-sm"}.join(' ')%>
+  </div>
+  <div class="card-footer text-muted">
+  
+    <%= t('profile.created_at') + ' '+ @review.created_at.to_s%> 
+    <% if @review.created_at.to_s != @review.updated_at.to_s %>
+   | <%= t('profile.edited_at') + ' '+ @review.updated_at.to_s%>
+    <% end %>
+  </div>
+    <% if user_signed_in? %>
+    <% if current_user.admin || current_user.email == @review.authorEmail %>
+    <div class="card-footer text-muted">
+      <%= link_to t('profile.edit'), edit_review_path(@review), class:"btn btn-warning" %>
+      <%= link_to t('profile.destroy'), @review, :method => :delete, data: { confirm: t('review.confirm') }, class:"btn btn-danger" %> 
+    </div>
+    <% end %>
+    <div class="card-footer text-muted text-center">
+      <% if !@rating.exists? %>
+        <%= link_to 'Rate 1', review_user_ratings_path(@review, :score => 1), method: :post,  class: "btn btn-info" %>
+        <%= link_to 'Rate 2', review_user_ratings_path(@review, :score => 2), method: :post,  class: "btn btn-info" %>
+        <%= link_to 'Rate 3', review_user_ratings_path(@review, :score => 3), method: :post,  class: "btn btn-info" %>
+        <%= link_to 'Rate 4', review_user_ratings_path(@review, :score => 4), method: :post,  class: "btn btn-info" %>
+        <%= link_to 'Rate 5', review_user_ratings_path(@review, :score => 5), method: :post,  class: "btn btn-info" %>
+      <%else%>
+        <%= link_to 'Unrate', review_user_rating_path(@review), method: :delete, class: "btn btn-info" %>
+      <%end%>
+      </div>
+      <div class="card-footer text-muted text-center">
+      <% if @like.exists? %>
+        <%= button_to t('review.unlike'), review_like_path(@review), method: :delete, class: "btn btn-info" %>
+      <% else %>
+        <%= button_to t('review.like'), review_likes_path(@review), method: :post, class: "btn btn-info" %>
+      <%end%>
+      </div>
+    <%end%>
+  </div>
 </div>
-<p></p>
-<%= link_to t('review.goBack'), :back, class:"btn btn-primary" %>
 

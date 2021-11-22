@@ -28,6 +28,7 @@ ru:
     forgotPassword: Забыли пароль?
     resetPasswordInstructions: Отправить инструкции по восстановлению пароля
     signInWith: Войти с помощью 
+    avg: Средняя оценка обзора
   profile:
     edit: Редактировать данные для входа
     myReviews: Мои обзоры

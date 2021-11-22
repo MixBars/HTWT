@@ -1,18 +1,10 @@
-<h1><%=t('review.search')%></h1>
-<div class="row g-3 align-items-center">
- <div class="col-auto">
-  <%= form_for search_path, method: :get do |f| %>
-  
-   <div class="col-auto">
-    <%= text_field_tag :q, params[:q], placeholder: t('navbar.typesearch'), class: "form" %> <%= submit_tag t('navbar.search'), name: nil, class:"btn btn-primary" %>
+ <ul class="list-group">
+  <li class="list-group-item list-group-item-primary"><%= @tag.name %></li>
+</ul>
 <p></p>
-<% end %>
-</div>
-</div>
 
 
-<p></p>
-<%@reviews.each do |review|%>
+<%@reviews.reverse.each do |review|%>
 <div class="card">
   <div class="card-header">
     <%= t('review.author')%>
@@ -30,7 +22,7 @@
     <%= review.content.to_plain_text[0..1000] + '...' %>
     <%end%>
     </p>
-    <%= link_to t('homepage.readMore'), review_path(review._id), class:"btn btn-primary" %>
+    <%= link_to t('homepage.readMore'), review, class:"btn btn-primary" %>
     <p></p>
     <%= t('homepage.avg') %>: <%= review.user_rating.average('score').to_d %>
   </div>
@@ -44,19 +36,3 @@
 </div>
 <p></p>
 <%end%>
-
-
-
-  <% @reviews.each do |review| %>
-    
-<div class="p-2 bg-light border rounded-3">
-<h5><%= t('homepage.reviewOn')+ ' "'+ review.name+ '"' %> 
-<p></p>
-<%= t('review.author')%>
-<%= link_to getAuthorNick(review)+ ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(review)) + ')',getAuthor(review) %> 
-<p></p>
-
-<%= link_to t('homepage.readMore'), review_path(review._id) %>
-</div>
-<%end%>
-
