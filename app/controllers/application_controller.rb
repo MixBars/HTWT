@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
  private
 
  def switch_locale(&block)
-   locale = params[:locale] || I18n.default_locale
+   locale = params[:locale] || locale = cookies[:locale] || I18n.default_locale
    I18n.with_locale(locale, &block)
+   cookies[:locale] = locale
  end
 end
