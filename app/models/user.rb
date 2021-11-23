@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :user_rating, dependent: :destroy
+  has_many :reviews
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -19,6 +20,20 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def countUserLikes
+    @reviews = self.reviews
+    sum = 0
+    @reviews.each do |review|
+      sum += review.likes.count
+    end
+    return sum.to_s
+  end
+
+  
+  def nick
+    self.email[0..self.email.index('@')-1]
   end
 
   # Include default devise modules. Others available are:

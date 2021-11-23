@@ -6,29 +6,24 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
-    
   end
 
   def show
-    @author = getAuthor(set_review)
     
-    
-    @showAuthorInfo = getAuthorNick(set_review) + ' ('+ t('profile.likesCount') + countUserLikes(getAuthor(set_review)) + ')'
-    
+    @showAuthorInfo = set_review.user.nick + ' ('+ t('profile.likesCount') + set_review.user.countUserLikes + ')'
   end
 
   def new
-    @users = User.select(:email).map(&:email)
+    @users = User.all
     @categories = Category.all
     @review = Review.new
     
   end
 
   def edit
-    
-    if set_review.authorEmail == current_user.email || current_user.admin
+    if set_review.user.id == current_user.id || current_user.admin
       @categories = Category.all
-      @users = User.select(:email).map(&:email)
+      @users = User.all
     else
       redirect_to root_path
     end
@@ -53,7 +48,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to getAuthor(@review), notice: t('review.destroyed') }
+      format.html { redirect_to @review.user, notice: t('review.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -72,7 +67,7 @@ class ReviewsController < ApplicationController
       end
     end
   end
-  end
+  
 
   
 
@@ -90,25 +85,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  
-  
-  def getAuthorNick(review)
-    review.authorEmail[0..review.authorEmail.index('@')-1]
-  end
-
-  def getAuthor(review)
-    User.find_by(email: review.authorEmail)
-  end
-
-  def countUserLikes(user)
-    @reviews = Review.where(authorEmail: user.email)
-    sum = 0
-    @reviews.each do |review|
-      sum += review.likes.count
-    end
-    return sum.to_s
-  end
-
 
     def set_review
       @review = Review.find(params[:id])
@@ -117,10 +93,9 @@ class ReviewsController < ApplicationController
  
     def review_params
     if current_user.admin   
-      params.require(:review).permit(:category_id, :name, :content, :rating, :authorEmail, :all_tags)
-
+      params.require(:review).permit(:category_id, :name, :content, :rating, :all_tags, :user_id)
     else
-      params.require(:review).permit(:category_id, :name, :content, :rating, :all_tags).merge(authorEmail: current_user.email)
+      params.require(:review).permit(:category_id, :name, :content, :rating, :all_tags).merge(user_id: current_user.id)
     end  
-  
+  end
 end

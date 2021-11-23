@@ -66,6 +66,7 @@ ru:
     edit: Редактирование обзора
     create: Сохранить обзор
     search: Поиск обзоров
+    chooseUser: "Сделать автором этого обзора: "
   activerecord:
     errors:
       models:

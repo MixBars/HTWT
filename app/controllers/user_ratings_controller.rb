@@ -7,14 +7,11 @@ class UserRatingsController < ApplicationController
  end
 
  def destroy
-
   @review.user_rating.where(user_id: current_user.id).destroy_all
   redirect_to review_path(@review)
- 
  end 
 
 private 
-
  def find_review
   @review = Review.find(params[:review_id])
 end

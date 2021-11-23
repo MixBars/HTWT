@@ -59,12 +59,25 @@
   
 <% if current_user.admin %>
   
-  <div class="field">
-    <%= form.label :authorEmail %>
-    <%= form.select :authorEmail, @users %>
-  </div>
-  
 
+<div class="field">
+<%= t('review.chooseUser') %>
+<select class='form-control' name='review[user_id]'>
+  <% @users.each do |user|%>
+<option value="<%= user.id %>"
+
+<%if @review.user_id && (@review.user_id == user.id)%>
+selected = selected
+<% elsif user.id == current_user.id %>
+selected = selected
+<%end%>
+>
+<%= user.email %>
+</option>
+
+<%end%>
+</select>
+</div>
   
 <%end%>
   

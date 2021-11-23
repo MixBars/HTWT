@@ -29,7 +29,7 @@
     <% end %>
   </div>
     <% if user_signed_in? %>
-    <% if current_user.admin || current_user.email == @review.authorEmail %>
+    <% if current_user.admin || current_user.id == @review.user.id %>
     <div class="card-footer text-muted">
       <%= link_to t('profile.edit'), edit_review_path(@review), class:"btn btn-warning" %>
       <%= link_to t('profile.destroy'), @review, :method => :delete, data: { confirm: t('review.confirm') }, class:"btn btn-danger" %> 

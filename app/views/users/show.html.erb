@@ -52,7 +52,7 @@
       <td><h5><%= review.created_at%></h5></td>
       <td><h5><%= review.updated_at%></h5></td>
       <td><%= link_to t('profile.show'), review, class:"btn btn-success"%> 
-      <% if user_signed_in? && (current_user.admin || current_user.email == review.authorEmail) %>
+      <% if user_signed_in? && (current_user.admin || current_user == review.user) %>
       <%= link_to t('profile.edit'), edit_review_path(review), class:"btn btn-warning" %>
       <%= link_to t('profile.destroy'), review, :method => :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
       </td>

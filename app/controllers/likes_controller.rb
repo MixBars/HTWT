@@ -2,24 +2,14 @@ class LikesController < ApplicationController
  before_action :find_review, :userLikeOnReview 
  
  def create
-  if @like.exists?
-   flash[:notice] = "You can't like more than once"
-  else
-   @review.likes.create(user_id: current_user.id)
-  end
+  @review.likes.create(user_id: current_user.id)
   redirect_to review_path(@review)
  end  
   
 
  def destroy
-  if user_signed_in?
-    if !@like.exists?
-      flash[:notice] = "You can't unlike more than once"
-    else
-    @like.destroy_all
-    end
-   redirect_to review_path(@review)
-  end
+  @like.destroy_all
+  redirect_to review_path(@review)
  end 
 
 
