@@ -53,7 +53,7 @@
 <h5><%= t('homepage.reviewOn')+ ' "'+ review.name+ '"' %> 
 <p></p>
 <%= t('review.author')%>
-<%= link_to review.user.nick + ' ('+ t('profile.likesCount') + review.user.countUserLikes) + ')', review.user %> 
+<%= link_to review.user.nick + ' ('+ t('profile.likesCount') + review.user.countUserLikes + ')', review.user %> 
 <p></p>
 
 <%= link_to t('homepage.readMore'), review_path(review._id) %>

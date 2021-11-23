@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
   before_action :userRatingOnReview, only: %i[show index]
 
   def index
-    @reviews = Review.all
+    @reviews = Review.all.paginate(page: params[:page], per_page: 4).order("created_at DESC")
+    
   end
 
   def show
@@ -30,6 +31,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @categories = Category.all
     @review = Review.new(review_params)
     @review.update(body: @review.content)
 

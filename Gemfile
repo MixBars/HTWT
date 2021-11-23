@@ -62,3 +62,5 @@ gem 'omniauth-google-oauth2'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+
+gem 'will_paginate'

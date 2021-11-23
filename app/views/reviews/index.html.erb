@@ -1,4 +1,5 @@
-<%@reviews.reverse.each do |review|%>
+
+<%@reviews.each do |review|%>
 <div class="card">
   <div class="card-header">
     <%= t('review.author')%>
@@ -30,3 +31,12 @@
 </div>
 <p></p>
 <%end%>
+
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @reviews %>
+  </div>
+  <%= will_paginate @reviews, :container => false %>
+</div>
+
+

@@ -29,6 +29,8 @@ ru:
     resetPasswordInstructions: Отправить инструкции по восстановлению пароля
     signInWith: Войти с помощью 
     avg: Средняя оценка обзора
+    previous: ← Предыдущая страница
+    next: Следующая страница →
   profile:
     edit: Редактировать данные для входа
     myReviews: Мои обзоры
@@ -82,3 +84,30 @@ ru:
               current_password:
                 invalid: (Неверный пароль)
                 blank: (поле не может быть пустым)
+  will_paginate:
+    next_label: "Следующая →"
+    page_entries_info:
+      multi_page:
+        few: "Отображено %{model} %{from} - %{to} из %{count}"
+        many: "Отображено %{model} %{from} - %{to} из %{count}"
+        one: "Отображено %{model} %{from} - %{to} из %{count}"
+        other: "Отображено %{model} %{from} - %{to} из %{count}"
+      multi_page_html:
+        few: "Отображено %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b>"
+        many: "Отображено %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b>"
+        one: "Отображено %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b>"
+        other: "Отображено %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b>"
+      single_page:
+        few: "Отображено %{count} %{model}"
+        many: "Отображено %{count} %{model}"
+        one: "Отображена %{count} %{model}"
+        other: "Отображено %{count} %{model}"
+        zero: "%{model} не найдены"
+      single_page_html:
+        few: "Отображено <b>%{count}</b> %{model}"
+        many: "Отображено <b>%{count}</b> %{model}"
+        one: "Отображена <b>%{count}</b> %{model}"
+        other: "Отображено <b>%{count}</b> %{model}"
+        zero: "%{model} не найдены"
+    page_gap: "&hellip;"
+    previous_label: "← Предыдущая"
