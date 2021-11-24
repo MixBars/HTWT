@@ -100,6 +100,8 @@ GEM
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -213,6 +215,10 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rake (13.0.6)
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -287,6 +293,7 @@ DEPENDENCIES
   devise
   elasticsearch-model
   elasticsearch-rails
+  faker
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2 (~> 0.5)
@@ -296,6 +303,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  ransack
   sass-rails (>= 6)
   selenium-webdriver
   spring

@@ -24,4 +24,7 @@ class Review < ApplicationRecord
  validates :name, :all_tags, presence: true
  validates :content, length: { minimum: 100 }, presence: true
 
+ 
+
+
 end

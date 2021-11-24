@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
 
   def show
     
-    @showAuthorInfo = set_review.user.nick + ' ('+ t('profile.likesCount') + set_review.user.countUserLikes + ')'
+    @showAuthorInfo = @review.user.nick + ' ('+ t('profile.likesCount') + @review.user.countUserLikes + ')'
   end
 
   def new
@@ -56,7 +56,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    
+    @categories = Category.all
     respond_to do |format|
       if @review.update(review_params)
       @review.update(body: @review.content)

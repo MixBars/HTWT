@@ -64,3 +64,6 @@ gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
 gem 'will_paginate'
+
+gem 'ransack'
+gem 'faker'
