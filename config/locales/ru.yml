@@ -32,6 +32,7 @@ ru:
     previous: ← Предыдущая страница
     next: Следующая страница →
   profile:
+    adminPanel: Панель администратора
     edit: Редактировать данные для входа
     myReviews: Мои обзоры
     newReview: Написать обзор
@@ -69,9 +70,21 @@ ru:
     create: Сохранить обзор
     search: Поиск обзоров
     chooseUser: "Сделать автором этого обзора: "
+    errors:
+     title: "найдены при сохранении обзора: "
+     error: ошибки
   activerecord:
     errors:
       models:
+        review:
+          attributes:
+            content:
+              blank: (поле не может быть пустым)
+              too_short: (слишком короткий - минимум 100 символов)
+            all_tags:
+              blank: (поле не может быть пустым)
+            name:
+              blank: (поле не может быть пустым) 
         user:
           attributes:
               email: 

@@ -3,12 +3,12 @@
 <%= link_to t('profile.newReview'), new_review_path, class:"w-100 btn btn-lg btn-success"%><p></p>
 <%end%>
 <% if user_signed_in? && current_user.admin %>
-<%= link_to 'Admin panel', users_path, class:"w-100 btn btn-lg btn-danger"%><p></p>
+<%= link_to t('profile.adminPanel'), users_path, class:"w-100 btn btn-lg btn-danger"%><p></p>
 <%end%>
 
 <h2><b><%= t('profile.whoisReviews') +' '+ @showUserInfo %></b></h2>
 
-<% if params[:q] || params[:category] || params[:sort]%>
+<% if params[:q] || params[:category]%>
 <%= link_to t("profile.resetFiltres") %>
 <%end%>
 <table class="table">
@@ -28,7 +28,7 @@
       
       </h5></th>
       <th scope="col"><h5><%= sort_link(@q, :name,t('profile.name'), default_order: :asc) %></h5></th>
-      <th scope="col"><h5><%= link_to 'avg', :sort=>'avg', :category=>params[:category] %></h5></th>
+      <th scope="col"><h5><%=t('homepage.avg')%></h5></th>
       <th scope="col"><h5><%= sort_link(@q, :created_at,t('profile.created_at'), default_order: :asc) %></h5></th>
       <th scope="col"><h5><%= sort_link(@q, :updated_at,t('profile.edited_at'), default_order: :asc) %></h5></th>
       <th scope="col"><h5><%=t('profile.options')%></h5></th>
@@ -38,10 +38,6 @@
   <tbody>
   <% if params[:category].present? %>
   <% @reviews = @reviews.where(category_id: params[:category])%>
-  <% elsif params[:sort].present? %>
-  <% @reviews = @reviews.sort_by{|h| h.user_rating.average('score').to_d} %>
-  <% elsif params[:category].present? && params[:sort].present? %>
-  <% @reviews = @reviews.where(category_id: params[:category]).sort_by{|h| h.user_rating.average('score').to_d} %>
   <% end %>
   <% @reviews.reverse.each_with_index do |review, index| %>
     <tr>
