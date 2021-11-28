@@ -16,6 +16,7 @@ default: &default
   username: mikhail
   password:
   socket: /var/run/mysqld/mysqld.sock
+  #socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -52,4 +53,5 @@ production:
   <<: *default
   database: HTWT_production
   username: HTWT
+  url: <%= ENV['DATABASE_URL'] %>
   password: <%= ENV['HTWT_DATABASE_PASSWORD'] %>
