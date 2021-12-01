@@ -62,8 +62,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails'
 
 gem 'will_paginate'
 
-gem 'ransack'
 gem 'faker'

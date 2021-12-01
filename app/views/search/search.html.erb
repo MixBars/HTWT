@@ -16,28 +16,28 @@
 <div class="card">
   <div class="card-header">
     <%= t('review.author')%>
-<%= link_to review.user.nick + ' ('+ t('profile.likesCount') + review.user.countUserLikes + ')', review.user %> 
+<%= link_to Review.find(review._id).user.nick + ' ('+ t('profile.likesCount') + Review.find(review._id).user.countUserLikes + ')', Review.find(review._id).user %> 
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= t('homepage.reviewOn')+ ' "'+ review.name+'"'%> 
-    <%= raw review.tags.map(&:name).map{|t| link_to t, tag_path(t), class: "btn btn-primary btn-sm"}.join(' ')%>
+    <%= raw Review.find(review._id).tags.map(&:name).map{|t| link_to t, tag_path(t), class: "btn btn-primary btn-sm"}.join(' ')%>
     </h5>
     <p class="card-text">
     
-    <% if review.content.to_plain_text.length < 1000 %> 
-    <%= review.content %>
+    <% if Review.find(review._id).content.to_plain_text.length < 1000 %> 
+    <%= Review.find(review._id).content %>
     <%else%>
-    <%= review.content.to_plain_text[0..1000] + '...' %>
+    <%= Review.find(review._id).content.to_plain_text[0..1000] + '...' %>
     <%end%>
     </p>
     <%= link_to t('homepage.readMore'), review_path(review._id), class:"btn btn-primary" %>
     <p></p>
-    <%= t('homepage.avg') %>: <%= review.user_rating.average('score').to_d %>
+    <%= t('homepage.avg') %>: <%= Review.find(review._id).user_rating.average('score').to_d %>
   </div>
   <div class="card-footer text-muted">
-    <%= t('profile.created_at') + ' '+ review.created_at.to_s%> 
-    <% if review.created_at.to_s != review.updated_at.to_s %>
-   | <%= t('profile.edited_at') + ' '+ review.updated_at.to_s%>
+    <%= t('profile.created_at') + ' '+ Review.find(review._id).created_at.to_s%> 
+    <% if Review.find(review._id).created_at.to_s != Review.find(review._id).updated_at.to_s %>
+   | <%= t('profile.edited_at') + ' '+ Review.find(review._id).updated_at.to_s%>
     <% end %>
     
   </div>
@@ -46,17 +46,4 @@
 <%end%>
 
 
-
-  <% @reviews.each do |review| %>
-    
-<div class="p-2 bg-light border rounded-3">
-<h5><%= t('homepage.reviewOn')+ ' "'+ review.name+ '"' %> 
-<p></p>
-<%= t('review.author')%>
-<%= link_to review.user.nick + ' ('+ t('profile.likesCount') + review.user.countUserLikes + ')', review.user %> 
-<p></p>
-
-<%= link_to t('homepage.readMore'), review_path(review._id) %>
-</div>
-<%end%>
 
