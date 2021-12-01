@@ -103,8 +103,6 @@ GEM
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
-    faker (2.19.0)
-      i18n (>= 1.6, < 2)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -293,7 +291,6 @@ DEPENDENCIES
   devise
   elasticsearch-model
   elasticsearch-rails
-  faker
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2 (~> 0.5)

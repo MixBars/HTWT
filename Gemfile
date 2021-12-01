@@ -66,4 +66,3 @@ gem 'bonsai-elasticsearch-rails'
 
 gem 'will_paginate'
 
-gem 'faker'

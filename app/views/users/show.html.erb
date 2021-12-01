@@ -8,9 +8,10 @@
 
 <h2><b><%= t('profile.whoisReviews') +' '+ @showUserInfo %></b></h2>
 
-<% if params[:q] || params[:category]%>
+<% if params[:category]%>
 <%= link_to t("profile.resetFiltres") %>
 <%end%>
+
 <table class="table">
   <thead>
   
@@ -22,15 +23,15 @@
       
       
       <% @categories.each do |category|%>
-      <option><%= link_to category.name, :category=>category.id, :sort=>params[:sort] %></option>
+      <option><%= link_to category.name, :category=>category.id %></option>
       <% end %>
       
       
       </h5></th>
-      <th scope="col"><h5><%= sort_link(@q, :name,t('profile.name'), default_order: :asc) %></h5></th>
+      <th scope="col"><h5><%= t('profile.name') %></h5></th>
       <th scope="col"><h5><%=t('homepage.avg')%></h5></th>
-      <th scope="col"><h5><%= sort_link(@q, :created_at,t('profile.created_at'), default_order: :asc) %></h5></th>
-      <th scope="col"><h5><%= sort_link(@q, :updated_at,t('profile.edited_at'), default_order: :asc) %></h5></th>
+      <th scope="col"><h5><%= t('profile.created_at') %></h5></th>
+      <th scope="col"><h5><%= t('profile.edited_at') %></h5></th>
       <th scope="col"><h5><%=t('profile.options')%></h5></th>
     
     </tr>
@@ -58,3 +59,4 @@
     
   </tbody>
 </table>
+

@@ -13,8 +13,8 @@ class UsersController < ApplicationController
     
     @categories = Category.all
     @user = User.find(params[:id])
-    @q = @user.reviews.ransack(params[:q])
-    @reviews = @q.result(distinct: true)
+    
+    @reviews = @user.reviews
     
 
     @showUserInfo = @user.nick + ' (' + t('profile.likesCount') + @user.countUserLikes + ')'
